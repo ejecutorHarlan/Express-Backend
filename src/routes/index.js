@@ -3,10 +3,9 @@ const checkToken = require('../middlewares/token-check');
 
 const router = express.Router();
 const productsRoutes = require('./products');
-const provRoutes = require('./proveedores');
 
 router.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Servidor y DB UP!!! 🚀');
 });
 
 router.use('/api/products', checkToken, productsRoutes);
