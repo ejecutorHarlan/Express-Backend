@@ -8,6 +8,9 @@ const fs = require('fs');
 const { stringify } = require('querystring');
 app.use(express.json());
 app.use(express.static('public'));
+const cors = require('cors');
+
+app.use(cors());
 
 //const products = require('../src/models/products.json')
 const employees = require('../data/empleados.json');
