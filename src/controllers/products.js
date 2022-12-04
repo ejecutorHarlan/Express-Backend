@@ -1,21 +1,21 @@
-const Products = require('../models/products');
+import Products from '../models/products.js';
 
 // Obtener todos los productos
-const getAll = (req, res) => {
+export const getAll = (req, res) => {
   Products.find({ isDeleted: false })
     .then((data) => res.status(200).json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 //Obtener producto por ID (pasado en url)
-const getByID = (req, res) => {
+export const getByID = (req, res) => {
   Products.findById(req.params.id)
     .then((data) => res.status(200).json({ data }))
     .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
 // Obtener producto por nombre (pasado en el body)
-const getByName = (req, res) => {
+export const getByName = (req, res) => {
   const name = {
     name: req.body.name,
   };
@@ -25,7 +25,7 @@ const getByName = (req, res) => {
 };
 
 // Cargar un producto
-const create = (req, res) => {
+export const create = (req, res) => {
   const newProduct = {
     name: req.body.name,
     price: req.body.price,
@@ -39,7 +39,7 @@ const create = (req, res) => {
 };
 
 // Hacer un update en algún producto
-const update = (req, res) => {
+export const update = (req, res) => {
   const prodUpdate = {
     name: req.body.name,
     price: req.body.price,
@@ -52,20 +52,11 @@ const update = (req, res) => {
 };
 
 // Eliminar un producto (Baja lógica)
-const toDelete = (req, res) => {
+export const toDelete = (req, res) => {
   const prodDelete = {
     isDeleted: true,
   };
   Products.findByIdAndUpdate(req.params.id, prodDelete)
     .then((data) => res.status(204).json({ msg: 'Product deleted:', data }))
     .catch((err) => res.status(404).json({ msg: `Error: ${err}` }));
-};
-
-module.exports = {
-  getAll,
-  getByID,
-  getByName,
-  create,
-  update,
-  toDelete,
 };

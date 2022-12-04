@@ -1,14 +1,16 @@
-const dotenv = require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const router = require('./routes/index');
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import router from './routes/index.js';
+
 const app = express();
-const fs = require('fs');
-const { stringify } = require('querystring');
+import fs from 'fs';
+import { stringify } from 'querystring';
 app.use(express.json());
 app.use(express.static('public'));
-const cors = require('cors');
+import cors from 'cors';
 
+dotenv.config();
 app.use(cors());
 
 app.use(router);

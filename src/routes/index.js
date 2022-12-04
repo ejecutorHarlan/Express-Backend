@@ -1,14 +1,15 @@
-const express = require('express');
-const checkToken = require('../middlewares/token-check');
+import express from 'express';
+
+import { checkToken } from '../middlewares/token-check.js';
 
 const router = express.Router();
-const productsRoutes = require('./products');
+import productsRoutes from './products.js';
 
 router.get('/', (req, res) => {
   res.send('Servidor y DB UP!!! 🚀');
 });
 
 router.use('/api/products', checkToken, productsRoutes);
-router.use('/api/prov', provRoutes);
+//router.use('/api/prov', provRoutes);
 
-module.exports = router;
+export default router;
